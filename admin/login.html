@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Admin - Modo Electrónico</title>
+
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+  <div class="container nav-container">
+
+    <div class="logo-area">
+      <img src="../assets/images/logo.png" alt="Logo">
+      <div class="logo-text">Modo <span>Electrónico</span></div>
+    </div>
+
+  </div>
+</header>
+
+<section class="section">
+  <div class="container" style="max-width:400px;">
+
+    <h2 class="section-title">Painel Administrativo</h2>
+
+    <form id="loginForm" class="feedback-form">
+
+      <input 
+  type="email" 
+  id="email" 
+  placeholder="Email" 
+  required
+>
+
+      <input 
+        type="password" 
+        id="password" 
+        placeholder="Senha" 
+        required
+      >
+
+      <button type="submit" class="btn btn-primary">
+        Entrar
+      </button>
+
+    </form>
+
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Modo Electrónico. Todos os direitos reservados.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/js/supabase.js"></script>
+<script src="../assets/js/adminAuth.js" defer></script>
+<script src="../assets/js/login.js" defer></script>
+
+</body>
+</html>

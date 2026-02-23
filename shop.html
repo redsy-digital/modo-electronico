@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Loja | Modo Electrónico</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+
+
+<!-- HEADER -->
+<header class="header">
+  <div class="container nav-container">
+    
+    <div class="logo-area">
+      <img src="assets/images/logo.png" alt="Logo">
+      <div class="logo-text">Modo <span>Electrónico</span></div>
+    </div>
+    
+    <div class="menu-toggle" id="menuToggle">
+      ☰
+    </div>
+    
+  </div>
+</header>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+  <button class="close-sidebar" id="closeSidebar">✕</button>
+  <a href="index.html">Início</a>
+  <a href="shop.html">Loja</a>
+  <a href="about.html">Sobre</a>
+</div>
+
+<div class="overlay" id="overlay"></div>
+
+<!-- HERO -->
+<section class="shop-hero">
+  <div class="container">
+    <h1>Catálogo de Produtos</h1>
+    <p>Explore os melhores produtos da Modo Electrónico.</p>
+  </div>
+</section>
+
+<!-- SEARCH -->
+<section class="shop-controls">
+  <div class="container">
+    <input type="text" id="searchInput" placeholder="Pesquisar produto...">
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="category-menu">
+  <div class="container">
+    <div class="categories-scroll" id="categoriesScroll"></div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products-container">
+  <div class="container">
+    
+    <!-- LOADING -->
+    <div id="productsLoader" class="products-loader">
+      <div class="spinner"></div>
+    </div>
+    
+    <div class="products-grid" id="productsGrid"></div>
+    
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Modo Electrónico. Todos os direitos reservados.</p>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="assets/js/supabase.js"></script>
+<script src="assets/js/products.js"></script>
+
+<script>
+const menuToggle = document.getElementById("menuToggle");
+const sidebar = document.getElementById("sidebar");
+const overlay = document.getElementById("overlay");
+const closeSidebar = document.getElementById("closeSidebar");
+
+menuToggle.onclick = () => {
+  sidebar.classList.add("active");
+  overlay.classList.add("active");
+};
+
+closeSidebar.onclick = () => {
+  sidebar.classList.remove("active");
+  overlay.classList.remove("active");
+};
+
+overlay.onclick = () => {
+  sidebar.classList.remove("active");
+  overlay.classList.remove("active");
+};
+</script>
+
+</body>
+</html>

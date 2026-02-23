@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produtos - Admin</title>
+
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="header">
+  <div class="container nav-container">
+    <div class="logo-area">
+      <img src="../assets/images/logo.png" alt="Logo">
+      <div class="logo-text">Modo <span>Electrónico</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+
+    <div class="products-header">
+      <h2>Gestão de Produtos</h2>
+      <a href="add-product.html" class="btn btn-primary">+ Novo Produto</a>
+    </div>
+
+    <div class="products-controls">
+      <input type="text" id="searchInput" placeholder="Pesquisar produto...">
+      <span id="productCount"></span>
+    </div>
+
+<div id="filters" class="filters"></div>
+
+    <div id="productsGrid" class="products-grid"></div>
+
+  </div>
+</section>
+
+<script src="../assets/js/admin_products.js" defer></script>
+
+</body>
+</html>

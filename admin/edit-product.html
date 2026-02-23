@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Produto - Admin</title>
+
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="header">
+  <div class="container nav-container">
+    <div class="logo-area">
+      <img src="../assets/images/logo.png" alt="Logo">
+      <div class="logo-text">Modo <span>Electrónico</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container" style="max-width: 900px;">
+
+    <div class="edit-header">
+      <h2>Editar Produto</h2>
+      <span class="edit-badge">Modo Edição</span>
+    </div>
+
+    <form id="editProductForm" class="feedback-form">
+
+      <!-- Nome -->
+      <input type="text" id="nome" placeholder="Nome do Produto" required>
+
+      <!-- Preços -->
+      <div class="grid-2">
+        <input type="number" id="preco" placeholder="Preço Normal" required>
+        <input type="number" id="precoPromocional" placeholder="Preço Promocional (opcional)">
+      </div>
+
+      <!-- Categoria -->
+      <input type="text" id="categoria" placeholder="Categoria">
+
+      <!-- Descrição -->
+      <textarea id="descricaoCurta" placeholder="Descrição Curta"></textarea>
+      <textarea id="descricaoLonga" placeholder="Descrição Longa"></textarea>
+
+      <!-- Stock -->
+      <input type="number" id="stock" placeholder="Quantidade em Stock">
+
+      <!-- Checkboxes -->
+      <div class="checkbox-group">
+        <label><input type="checkbox" id="destaque"> Produto em destaque</label>
+        <label><input type="checkbox" id="ativo"> Produto ativo</label>
+      </div>
+
+      <!-- Imagem Principal -->
+      <div class="upload-group">
+        <label class="upload-box">
+          <input type="file" id="imagemPrincipal" accept="image/*" hidden>
+          <div class="upload-icon">+</div>
+          <span>Alterar Imagem Principal</span>
+        </label>
+        <div id="previewPrincipal" class="image-preview"></div>
+      </div>
+
+      <!-- Galeria -->
+      <div class="upload-group">
+        <label class="upload-box">
+          <input type="file" id="imagensGaleria" accept="image/*" multiple hidden>
+          <div class="upload-icon">+</div>
+          <span>Alterar Imagens Secundárias (máx 4)</span>
+        </label>
+        <div id="previewGaleria" class="image-preview"></div>
+      </div>
+
+      <!-- Botões -->
+      <div class="edit-actions">
+        <button type="submit" class="btn btn-primary">
+          💾 Atualizar Produto
+        </button>
+
+        <button type="button" class="btn btn-danger" id="deleteProduct">
+          🗑 Eliminar Produto
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+</section>
+
+<script src="../assets/js/editProduct.js" defer></script>
+
+</body>
+</html>

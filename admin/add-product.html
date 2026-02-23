@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adicionar Produto</title>
+
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="container nav-container">
+    <div class="logo-area">
+      <img src="../assets/images/logo.png">
+      <div class="logo-text">Modo <span>Electrónico</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container" style="max-width:700px;">
+
+    <h2 class="section-title">Adicionar Produto</h2>
+
+    <form id="addProductForm" class="feedback-form">
+
+      <input type="text" id="nome" placeholder="Nome do Produto" required>
+
+      <input type="number" id="preco" placeholder="Preço" required>
+
+      <input type="number" id="precoPromocional" placeholder="Preço Promocional (opcional)">
+
+     <select id="categoria" required>
+  <option value="">Selecionar Categoria</option>
+</select>
+
+      <textarea id="descricaoCurta" placeholder="Descrição Curta" required></textarea>
+
+      <textarea id="descricaoLonga" placeholder="Descrição Longa" required></textarea>
+
+      <!-- IMAGEM PRINCIPAL -->
+<div class="upload-group">
+  <label class="upload-box">
+    <input type="file" id="imagemPrincipal" accept="image/*" hidden>
+    <div class="upload-icon">+</div>
+    <span>Imagem Principal</span>
+  </label>
+
+  <div id="previewPrincipal" class="image-preview"></div>
+</div>
+
+
+<!-- GALERIA -->
+<div class="upload-group">
+  <label class="upload-box">
+    <input type="file" id="imagensGaleria" accept="image/*" multiple hidden>
+    <div class="upload-icon">+</div>
+    <span>Imagens Secundárias (máx 4)</span>
+  </label>
+
+  <div id="previewGaleria" class="image-preview"></div>
+</div>
+
+      <input type="number" id="stock" placeholder="Stock" required>
+
+      <label>
+        <input type="checkbox" id="destaque">
+        Produto em destaque
+      </label>
+
+      <label>
+        <input type="checkbox" id="ativo" checked>
+        Produto ativo
+      </label>
+
+      <button type="submit" class="btn btn-primary">
+        Guardar Produto
+      </button>
+
+    </form>
+
+  </div>
+</section>
+
+<script src="../assets/js/adminAuth.js" defer></script>
+<script src="../assets/js/addProduct.js" defer></script>
+
+<div id="imageModal" class="image-modal hidden">
+  <div class="image-modal-card">
+    <p>Remover imagem?</p>
+    <div class="modal-buttons">
+      <button id="confirmRemove" class="btn btn-primary">Sim</button>
+      <button id="cancelRemove" class="btn">Não</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

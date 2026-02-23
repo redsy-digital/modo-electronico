@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Modo Electrónico</title>
+
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="container nav-container">
+    <div class="logo-area">
+      <img src="../assets/images/logo.png" alt="Logo">
+      <div class="logo-text">Modo <span>Electrónico</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container" style="max-width:1000px;">
+
+    <h2 class="section-title">Dashboard do Administrador</h2>
+
+    <!-- BOTÕES PRINCIPAIS -->
+    <div class="admin-grid">
+
+      <a href="products.html" class="admin-card">
+        📦 Gerenciar Produtos
+      </a>
+
+      <a href="settings.html" class="admin-card">
+        ⚙ Definições de Contacto
+      </a>
+
+      <a href="credentials.html" class="admin-card">
+        🔐 Alterar Credenciais de Acesso
+      </a>
+
+    </div>
+
+    <!-- MÉTRICAS -->
+    <h3 style="margin-top:50px;">Métricas do Site</h3>
+
+    <div class="metrics-box">
+
+      <p><strong>Produtos Ativos:</strong> 
+        <span id="activeProductsCount">0</span>
+      </p>
+
+      <h4 style="margin-top:20px;">Categorias</h4>
+
+      <ul id="categoryList" class="category-list"></ul>
+
+      <button id="addCategoryBtn" class="btn btn-outline" style="margin-top:15px;">
+        + Adicionar Categoria
+      </button>
+
+      <div id="categoryForm" class="hidden" style="margin-top:15px;">
+        <input type="text" id="categoryName" placeholder="Nome (ex: Notebooks)">
+        <button id="saveCategoryBtn" class="btn btn-primary">
+          Guardar
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script src="../assets/js/dashboard.js" defer></script>
+
+</body>
+</html>
