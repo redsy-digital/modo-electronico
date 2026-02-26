@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   
   if (!isAdminArea) return;
   
-  const { data: { session }, error } = await supabaseClient.auth.getSession();
+  const { data: { session }, error } = await supabase.auth.getSession();
   
   if (!session && !isLoginPage) {
     window.location.href = "login.html";
