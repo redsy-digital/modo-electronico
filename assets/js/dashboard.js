@@ -1,70 +1,148 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
+  
+  loadStats();
+  setupLogout();
+  setupMobileMenu();
+  
+});
 
-  const addBtn = document.getElementById("addCategoryBtn");
-  const form = document.getElementById("categoryForm");
-  const saveBtn = document.getElementById("saveCategoryBtn");
-  const categoryList = document.getElementById("categoryList");
-  const countEl = document.getElementById("activeProductsCount");
+/* ===========================
+SUPABASE STATS
+=========================== */
 
-  // ===============================
-  // PRODUTOS ATIVOS (mock)
-  // ===============================
-  const products = JSON.parse(localStorage.getItem("products")) || [];
-  countEl.textContent = products.length;
-
-  // ===============================
-  // CARREGAR CATEGORIAS
-  // ===============================
-  let categories = JSON.parse(localStorage.getItem("categories")) || [];
-
-  function renderCategories() {
-    categoryList.innerHTML = "";
-
-    categories.forEach((cat, index) => {
-
-      const li = document.createElement("li");
-      li.innerHTML = `
-        <span>${cat}</span>
-        <button data-index="${index}" class="btn btn-outline btn-small">Eliminar</button>
-      `;
-
-      li.querySelector("button").addEventListener("click", function () {
-        categories.splice(index, 1);
-        localStorage.setItem("categories", JSON.stringify(categories));
-        renderCategories();
-      });
-
-      categoryList.appendChild(li);
-    });
-
+async function loadStats() {
+  
+  try {
+    
+    const [
+      totalProducts,
+      activeProducts,
+      featuredProducts,
+      totalCategories
+      
+    ] = await Promise.all([
+      
+      countProducts(),
+      countActiveProducts(),
+      countFeaturedProducts(),
+      countCategories()
+      
+    ]);
+    
+    document.getElementById("totalProducts").textContent = totalProducts;
+    document.getElementById("activeProducts").textContent = activeProducts;
+    document.getElementById("featuredProducts").textContent = featuredProducts;
+    document.getElementById("totalCategories").textContent = totalCategories;
+    
+  } catch (error) {
+    
+    console.error("Erro ao carregar estatísticas:", error);
+    
   }
+  
+}
 
-  renderCategories();
+/* ===========================
+SUPABASE QUERIES
+=========================== */
 
-  // ===============================
-  // MOSTRAR FORM
-  // ===============================
-  addBtn.addEventListener("click", function () {
-    form.classList.toggle("hidden");
+async function countProducts() {
+  
+  const { count, error } = await supabase
+    .from("products")
+    .select("*", { count: "exact", head: true });
+  
+  if (error) throw error;
+  
+  return count;
+  
+}
+
+async function countActiveProducts() {
+  
+  const { count, error } = await supabase
+    .from("products")
+    .select("*", { count: "exact", head: true })
+    .eq("ativo", true);
+  
+  if (error) throw error;
+  
+  return count;
+  
+}
+
+async function countFeaturedProducts() {
+  
+  const { count, error } = await supabase
+    .from("products")
+    .select("*", { count: "exact", head: true })
+    .eq("destaque", true);
+  
+  if (error) throw error;
+  
+  return count;
+  
+}
+
+async function countCategories() {
+  
+  const { count, error } = await supabase
+    .from("categories")
+    .select("*", { count: "exact", head: true });
+  
+  if (error) throw error;
+  
+  return count;
+  
+}
+
+/* ===========================
+LOGOUT
+=========================== */
+
+function setupLogout() {
+  
+  const btn = document.getElementById("logoutBtn");
+  
+  btn.addEventListener("click", async () => {
+    
+    const { error } = await supabase.auth.signOut();
+    
+    if (error) {
+      console.error(error);
+      return;
+    }
+    
+    window.location.href = "/admin/login.html";
+    
   });
+  
+}
 
-  // ===============================
-  // GUARDAR CATEGORIA
-  // ===============================
-  saveBtn.addEventListener("click", function () {
+/* ===========================
+MOBILE MENU
+=========================== */
 
-    const input = document.getElementById("categoryName");
-    const name = input.value.trim();
+function setupMobileMenu(){
 
-    if (!name) return;
+const toggle = document.getElementById("menuToggle");
+const sidebar = document.getElementById("adminSidebar");
+const overlay = document.getElementById("overlay");
 
-    categories.push(name);
-    localStorage.setItem("categories", JSON.stringify(categories));
+if(!toggle || !sidebar || !overlay) return;
 
-    input.value = "";
-    form.classList.add("hidden");
+toggle.addEventListener("click", function(){
 
-    renderCategories();
-  });
+sidebar.classList.toggle("active");
+overlay.classList.toggle("active");
 
 });
+
+overlay.addEventListener("click", function(){
+
+sidebar.classList.remove("active");
+overlay.classList.remove("active");
+
+});
+
+}
