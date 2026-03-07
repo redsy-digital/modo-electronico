@@ -70,7 +70,7 @@
 
 <button id="logoutBtn" class="btn btn-outline logout-btn">
 <i class="fa-solid fa-right-from-bracket"></i>
-Logout
+Terminar Sessão
 </button>
 
 </div>
@@ -83,20 +83,19 @@ Logout
 <!-- MAIN -->
 <main class="admin-main">
 
-<header class="admin-header">
+<header class="header admin-mobile-header">
 
-<button class="menu-toggle" id="menuToggle">
-<i class="fa-solid fa-bars"></i>
-</button>
+<div class="container nav-container">
 
-<div class="mobile-logo">
-<img src="/assets/images/logo.png" alt="logo">
-<span>Modo <strong>Electrónico</strong></span>
+<div class="logo-area">
+<img src="/assets/images/logo.png">
+<div class="logo-text">Modo <span>Electrónico</span></div>
 </div>
 
-<div class="header-title">
-<h1>Dashboard</h1>
-<p>Visão geral do sistema</p>
+<div class="menu-toggle" id="menuToggle">
+☰
+</div>
+
 </div>
 
 </header>
@@ -141,8 +140,37 @@ Logout
 
 </div>
 
-<script src="/admin/adminAuth.js"></script>
-<script src="/admin/dashboard.js"></script>
+<footer>
+  <p>© 2026 Modo Electrónico. Todos os direitos reservados.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/assets/js/supabase.js"></script>
+<script src="/assets/js/adminAuth.js"></script>
+<script src="/assets/js/dashboard.js"></script>
+
+
+<!-- LOGOUT MODAL -->
+<div class="logout-modal hidden" id="logoutModal">
+
+  <div class="logout-modal-card">
+
+    <h3>Deseja sair do painel?</h3>
+    <p>A sua sessão será encerrada.</p>
+
+    <div class="logout-actions">
+      <button id="cancelLogout" class="btn btn-outline">
+        Cancelar
+      </button>
+
+      <button id="confirmLogout" class="btn btn-primary">
+        Sim, sair
+      </button>
+    </div>
+
+  </div>
+
+</div>
 
 </body>
 </html>

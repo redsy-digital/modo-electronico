@@ -48,7 +48,7 @@ SUPABASE QUERIES
 
 async function countProducts() {
   
-  const { count, error } = await supabase
+  const { count, error } = await supabaseClient
     .from("products")
     .select("*", { count: "exact", head: true });
   
@@ -60,7 +60,7 @@ async function countProducts() {
 
 async function countActiveProducts() {
   
-  const { count, error } = await supabase
+  const { count, error } = await supabaseClient
     .from("products")
     .select("*", { count: "exact", head: true })
     .eq("ativo", true);
@@ -73,7 +73,7 @@ async function countActiveProducts() {
 
 async function countFeaturedProducts() {
   
-  const { count, error } = await supabase
+  const { count, error } = await supabaseClient
     .from("products")
     .select("*", { count: "exact", head: true })
     .eq("destaque", true);
@@ -86,7 +86,7 @@ async function countFeaturedProducts() {
 
 async function countCategories() {
   
-  const { count, error } = await supabase
+  const { count, error } = await supabaseClient
     .from("categories")
     .select("*", { count: "exact", head: true });
   
@@ -100,23 +100,40 @@ async function countCategories() {
 LOGOUT
 =========================== */
 
-function setupLogout() {
-  
-  const btn = document.getElementById("logoutBtn");
-  
-  btn.addEventListener("click", async () => {
-    
-    const { error } = await supabase.auth.signOut();
-    
-    if (error) {
-      console.error(error);
-      return;
-    }
-    
-    window.location.href = "/admin/login.html";
-    
-  });
-  
+function setupLogout(){
+
+const logoutBtn = document.getElementById("logoutBtn");
+const modal = document.getElementById("logoutModal");
+const cancelBtn = document.getElementById("cancelLogout");
+const confirmBtn = document.getElementById("confirmLogout");
+
+if(!logoutBtn) return;
+
+logoutBtn.addEventListener("click", () => {
+
+modal.classList.remove("hidden");
+
+});
+
+cancelBtn.addEventListener("click", () => {
+
+modal.classList.add("hidden");
+
+});
+
+confirmBtn.addEventListener("click", async () => {
+
+const { error } = await supabaseClient.auth.signOut();
+
+if(error){
+console.error(error);
+return;
+}
+
+window.location.href = "/admin/login.html";
+
+});
+
 }
 
 /* ===========================
@@ -131,14 +148,14 @@ const overlay = document.getElementById("overlay");
 
 if(!toggle || !sidebar || !overlay) return;
 
-toggle.addEventListener("click", function(){
+toggle.addEventListener("click", () => {
 
 sidebar.classList.toggle("active");
 overlay.classList.toggle("active");
 
 });
 
-overlay.addEventListener("click", function(){
+overlay.addEventListener("click", () => {
 
 sidebar.classList.remove("active");
 overlay.classList.remove("active");
