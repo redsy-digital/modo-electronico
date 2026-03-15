@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dar Feedback - Modo Electrónico</title>
+
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="assets/images/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="header">
+  <div class="container nav-container">
+    <div class="logo-area">
+      <img src="assets/images/logo.png" alt="Logo">
+      <div class="logo-text">Modo <span>Electrónico</span></div>
+    </div>
+
+    <div class="menu-toggle" id="menuToggle">
+      ☰
+    </div>
+  </div>
+</header>
+
+<!-- MENU -->
+<div class="sidebar" id="sidebar">
+  <a href="index.html">Home</a>
+  <a href="shop.html">Produtos</a>
+  <a href="feedback.html">Dar Feedback</a>
+  <a href="https://wa.me/244939593362" target="_blank" class="btn btn-primary">WhatsApp</a>
+</div>
+
+<section class="section feedback-section">
+  <div class="container feedback-container">
+
+    <h2 class="section-title">Partilhe a sua experiência</h2>
+
+    <form class="feedback-form">
+
+      <div class="stars-container">
+        <span class="star" data-value="1">★</span>
+        <span class="star" data-value="2">★</span>
+        <span class="star" data-value="3">★</span>
+        <span class="star" data-value="4">★</span>
+        <span class="star" data-value="5">★</span>
+      </div>
+
+      <input type="text" placeholder="Seu nome" class="input" required>
+
+      <textarea placeholder="Escreva o seu feedback..." class="input textarea" required></textarea>
+
+      <button type="submit" class="btn btn-primary">Enviar Feedback</button>
+
+    </form>
+
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Modo Electrónico. Todos os direitos reservados.</p>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+<script src="assets/js/admin.js" defer></script>
+</body>
+</html>

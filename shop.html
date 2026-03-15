@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Produtos | Modo Electrónico</title>
+
+<link rel="icon" href="/assets/images/favicon.png">
+
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/shop.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="/assets/js/supabase.js"></script>
+
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<header class="shop-header">
+
+<div class="shop-header-inner">
+
+<div class="logo-area">
+<img src="/assets/images/logo.png">
+<div class="logo-text">Modo <span>Electrónico</span></div>
+</div>
+
+<div class="search-box">
+<input type="text" id="searchInput" placeholder="Procurar produto...">
+<i class="fa-solid fa-search"></i>
+</div>
+
+<div class="menu-toggle" id="menuToggle">
+<i class="fa-solid fa-bars"></i>
+</div>
+
+</div>
+
+<div class="mobile-menu" id="mobileMenu">
+
+<a href="/">Home</a>
+<a href="/shop.html">Produtos</a>
+<a href="/feedback.html">Feedback</a>
+
+</div>
+
+</header>
+
+
+<main class="shop-main">
+
+<section class="featured-section">
+
+<h2>Produtos em destaque</h2>
+
+<div class="featured-products" id="featuredProducts"></div>
+
+</section>
+
+
+<section class="all-products">
+
+<h2>Todos os produtos</h2>
+
+<div class="products-grid" id="productsGrid"></div>
+
+</section>
+
+</main>
+
+
+<a href="https://wa.me/244000000000" class="whatsapp-float">
+<i class="fa-brands fa-whatsapp"></i>
+</a>
+
+
+<script src="/assets/js/particles.js"></script>
+<script src="/assets/js/shop.js"></script>
+
+</body>
+</html>

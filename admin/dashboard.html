@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dashboard | Modo Electrónico</title>
+
+<link rel="icon" href="/assets/images/favicon.png">
+
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/admin.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+<!-- SIDEBAR -->
+<aside class="admin-sidebar" id="adminSidebar">
+
+<div class="sidebar-top">
+
+<div class="logo-area">
+<img src="/assets/images/logo.png" alt="logo">
+<div class="logo-text">Modo <span>Electrónico</span></div>
+</div>
+
+</div>
+
+<nav class="sidebar-menu">
+
+<a href="/admin/dashboard.html" class="active">
+<i class="fa-solid fa-chart-line"></i>
+<span>Dashboard</span>
+</a>
+
+<a href="/admin/products.html">
+<i class="fa-solid fa-box"></i>
+<span>Produtos</span>
+</a>
+
+<a href="/admin/categories.html">
+<i class="fa-solid fa-tags"></i>
+<span>Categorias</span>
+</a>
+
+<a href="/admin/add-product.html">
+<i class="fa-solid fa-plus"></i>
+<span>Adicionar Produto</span>
+</a>
+
+<a href="/admin/settings.html">
+<i class="fa-solid fa-gear"></i>
+<span>Definições</span>
+</a>
+
+<a href="/admin/credentials.html">
+<i class="fa-solid fa-user-shield"></i>
+<span>Credenciais</span>
+</a>
+
+</nav>
+
+<div class="sidebar-footer">
+
+<button id="logoutBtn" class="btn btn-outline logout-btn">
+<i class="fa-solid fa-right-from-bracket"></i>
+Terminar Sessão
+</button>
+
+</div>
+
+</aside>
+
+
+<div class="overlay" id="overlay"></div>
+
+<!-- MAIN -->
+<main class="admin-main">
+
+<header class="header admin-mobile-header">
+
+<div class="container nav-container">
+
+<div class="logo-area">
+<img src="/assets/images/logo.png">
+<div class="logo-text">Modo <span>Electrónico</span></div>
+</div>
+
+<div class="menu-toggle" id="menuToggle">
+☰
+</div>
+
+</div>
+
+</header>
+
+<h2 class="section-title">Dashboard Administrativo</h2>
+
+<section class="stats-grid">
+
+<div class="stat-card">
+<i class="fa-solid fa-box"></i>
+<div>
+<h3 id="totalProducts">—</h3>
+<span>Total de Produtos</span>
+</div>
+</div>
+
+<div class="stat-card">
+<i class="fa-solid fa-check-circle"></i>
+<div>
+<h3 id="activeProducts">—</h3>
+<span>Produtos Ativos</span>
+</div>
+</div>
+
+<div class="stat-card">
+<i class="fa-solid fa-star"></i>
+<div>
+<h3 id="featuredProducts">—</h3>
+<span>Produtos em Destaque</span>
+</div>
+</div>
+
+<div class="stat-card">
+<i class="fa-solid fa-tags"></i>
+<div>
+<h3 id="totalCategories">—</h3>
+<span>Total de Categorias</span>
+</div>
+</div>
+
+</section>
+
+</main>
+
+</div>
+
+<footer>
+  <p>© 2026 Modo Electrónico. Todos os direitos reservados.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/js/supabase.js"></script>
+	<script src="../assets/js/adminAuth.js"></script>
+	<script src="../assets/js/dashboard.js"></script>
+
+
+<!-- LOGOUT MODAL -->
+<div class="logout-modal hidden" id="logoutModal">
+
+  <div class="logout-modal-card">
+
+    <h3>Deseja sair do painel?</h3>
+    <p>A sua sessão será encerrada.</p>
+
+    <div class="logout-actions">
+      <button id="cancelLogout" class="btn btn-outline">
+        Cancelar
+      </button>
+
+      <button id="confirmLogout" class="btn btn-primary">
+        Sim, sair
+      </button>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
