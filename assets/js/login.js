@@ -32,3 +32,37 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   
 });
+
+// Recuperar senha
+
+const forgotLink = document.getElementById("forgotPasswordLink");
+
+if (forgotLink) {
+  
+  forgotLink.addEventListener("click", async (e) => {
+    
+    e.preventDefault();
+    
+    const email = document.getElementById("email").value;
+    
+    if (!email) {
+      alert("Digite seu email primeiro.");
+      return;
+    }
+    
+    const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+      
+      redirectTo: window.location.origin + "/admin/update-password.html"
+      
+    });
+    
+    if (error) {
+      alert("Erro ao enviar email: " + error.message);
+      return;
+    }
+    
+    alert("Email de recuperação enviado.");
+    
+  });
+  
+}
