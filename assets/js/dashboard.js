@@ -5,6 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 async function loadStats() {
+  // Verificar se os elementos de estatísticas existem (apenas no dashboard)
+  if (!document.getElementById("totalProducts")) {
+    return; // Sair silenciosamente se não for a página do dashboard
+  }
+  
   try {
     const [
       totalProducts,
@@ -68,7 +73,7 @@ function setupLogout(){
   const cancelBtn = document.getElementById("cancelLogout");
   const confirmBtn = document.getElementById("confirmLogout");
   
-  if(!logoutBtn) return;
+  if(!logoutBtn || !modal || !cancelBtn || !confirmBtn) return;
   
   logoutBtn.addEventListener("click", () => {
     modal.classList.remove("hidden");

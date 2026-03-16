@@ -6,9 +6,14 @@
   <title>Modo Electrónico</title>
 
   <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/shop.css">
   <link rel="icon" href="assets/images/favicon.png">
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/assets/js/supabase.js"></script>
 </head>
 <body>
 
@@ -21,7 +26,7 @@
     </div>
 
     <div class="menu-toggle" id="menuToggle">
-      ☰
+      <i class="fa-solid fa-bars"></i>
     </div>
 
   </div>
@@ -78,36 +83,47 @@
   </div>
 </section>
 
-<section class="section testimonials">
+<section class="section products">
   <div class="container">
-    <h2 class="section-title">O que dizem nossos clientes</h2>
+    <h2 class="section-title">Nossos Principais Produtos</h2>
 
-    <div class="testimonials-grid">
-
-      <div class="testimonial-card">
-        <p>"Excelente atendimento e produtos de qualidade. Recomendo totalmente!"</p>
-        <div class="stars">★★★★★</div>
-        <span>- Cliente Satisfeito</span>
-      </div>
-
-      <div class="testimonial-card">
-        <p>"Entrega rápida e suporte muito profissional."</p>
-        <div class="stars">★★★★★</div>
-        <span>- Empresa Parceira</span>
-      </div>
-
-      <div class="testimonial-card">
-        <p>"Ótima experiência de compra. Voltarei a comprar com certeza."</p>
-        <div class="stars">★★★★★</div>
-        <span>- Cliente Recorrente</span>
-      </div>
-
+    <div class="products-grid" id="featuredProductsHome">
+      <!-- Os produtos em destaque serão carregados aqui via JavaScript -->
     </div>
   </div>
 </section>
 
-<footer>
-  <p>© 2026 Modo Electrónico. Todos os direitos reservados.</p>
+<section class="section about-cta-section">
+  <div class="container">
+    <div class="cta-content">
+      <h2 class="section-title">Conheça a Nossa História</h2>
+      <p>Descubra quem somos, a nossa missão e como estamos a moldar o futuro da tecnologia em Angola.</p>
+      <a href="about.html" class="btn btn-primary">Sobre Nós</a>
+    </div>
+  </div>
+</section>
+
+<footer class="shop-footer">
+  
+  <div class="footer-content">
+    
+    <div class="footer-brand">
+      <h3>Loja</h3>
+      <p>Produtos de qualidade com atendimento rápido pelo WhatsApp.</p>
+    </div>
+    
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Produtos</a>
+      <a href="feedback.html">Feedback</a>
+    </div>
+    
+  </div>
+  
+  <p class="footer-copy">
+    © 2026 Todos os direitos reservados
+  </p>
+  
 </footer>
 
 <script src="assets/js/main.js"></script>
