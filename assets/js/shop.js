@@ -211,7 +211,7 @@ function setupSearch() {
 
 function whatsappProduct(name) {
     const msg = `Olá, tenho interesse no produto: ${name}`
-    window.open(`https://wa.me/244000000000?text=${encodeURIComponent(msg)}`)
+    window.open(`https://wa.me/244939593362?text=${encodeURIComponent(msg)}`)
 }
 
 function productDetails(id) {

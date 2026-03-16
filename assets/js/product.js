@@ -78,7 +78,7 @@ async function loadProductDetails(id) {
         const whatsappBtn = document.getElementById("whatsappBtn");
         if(whatsappBtn) {
             const msg = encodeURIComponent(`Olá! Tenho interesse no produto: ${p.nome} (ID: ${p.id})`);
-            whatsappBtn.href = `https://wa.me/244000000000?text=${msg}`;
+            whatsappBtn.href = `https://wa.me/244939593362?text=${msg}`;
         }
 
         // 5. Galeria de Imagens
