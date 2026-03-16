@@ -390,6 +390,18 @@ button {
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 30px;
   margin-top: 40px;
+  justify-content: center;
+}
+
+@media (max-width: 600px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+  .product-card {
+    width: 100%;
+    max-width: 320px;
+  }
 }
 
 .product-card {
@@ -428,11 +440,23 @@ button {
   margin-bottom: 10px;
 }
 
+.product-price-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
 .old-price {
   text-decoration: line-through;
-  color: #aaa;
-  font-size: 14px;
-  margin-right: 8px;
+  color: var(--text2);
+  font-size: 0.9em;
+  opacity: 0.6;
+}
+
+.promo-price {
+  color: #FF4D4D !important;
+  font-weight: 700;
 }
 /* ==========================
    SHOP CONTROLS

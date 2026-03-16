@@ -1,60 +1,433 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Produto - Modo Electrónico</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Produto | Modo Electrónico</title>
+    
+    <link rel="icon" href="/assets/images/favicon.png">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="icon" href="assets/images/favicon.png">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="assets/js/supabase.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="/assets/js/supabase.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            padding-top: 80px;
+            background: radial-gradient(circle at top right, #1a2333, #0b0f19);
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        .product-page-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 50px;
+            align-items: start;
+            overflow-x: hidden;
+        }
+
+        /* GALERIA */
+        .gallery-section {
+            position: sticky;
+            top: 100px;
+        }
+
+        .main-image-container {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 1/1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: zoom-in;
+            backdrop-filter: blur(10px);
+        }
+
+        .main-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            max-width: 100%;
+            display: block;
+        }
+
+        .main-image-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .thumbnails-grid {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            scrollbar-width: thin;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .thumb-item {
+            width: 80px;
+            height: 80px;
+            border-radius: 12px;
+            border: 2px solid transparent;
+            background: var(--glass);
+            cursor: pointer;
+            overflow: hidden;
+            flex-shrink: 0;
+            transition: 0.3s;
+        }
+
+        .thumb-item.active {
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(0, 207, 255, 0.3);
+        }
+
+        .thumb-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* INFO */
+        .info-section {
+            color: var(--text);
+        }
+
+        .category-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(0, 207, 255, 0.1);
+            color: var(--accent);
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .product-name {
+            font-size: 42px;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, #9ca3af);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .price-box {
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 16px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .current-price {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .original-price {
+            font-size: 18px;
+            color: var(--text2);
+            text-decoration: line-through;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .stock-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4ade80;
+            box-shadow: 0 0 10px #4ade80;
+        }
+
+        .short-description {
+            font-size: 17px;
+            color: var(--text2);
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .actions-box {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .btn-buy {
+            flex: 1;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-size: 18px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2);
+        }
+
+        .btn-buy:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.3);
+        }
+
+        /* DETALHES */
+        .details-tabs {
+            border-top: 1px solid var(--glass-border);
+            padding-top: 30px;
+        }
+
+        .tab-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .long-description {
+            color: var(--text2);
+            line-height: 1.8;
+            white-space: pre-line;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 968px) {
+            .product-page-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                margin: 30px auto;
+                padding: 0 16px;
+            }
+            .product-name {
+                font-size: 32px;
+            }
+            .gallery-section {
+                position: relative;
+                top: 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding-top: 70px;
+                width: 100vw;
+                overflow-x: hidden;
+            }
+
+            .product-page-container {
+                width: 100%;
+                margin: 20px auto;
+                padding: 0 16px;
+                gap: 20px;
+                overflow-x: hidden;
+            }
+
+            .gallery-section {
+                padding: 0 4px;
+            }
+
+            .info-section {
+                padding: 0 4px;
+            }
+
+            .product-name {
+                font-size: 24px;
+                margin-bottom: 15px;
+            }
+
+            .short-description {
+                font-size: 15px;
+                margin-bottom: 20px;
+            }
+
+            .category-tag {
+                font-size: 11px;
+                padding: 5px 12px;
+                margin-bottom: 10px;
+            }
+
+            .price-box {
+                margin: 20px 0;
+                padding: 15px;
+            }
+
+            .current-price {
+                font-size: 28px;
+            }
+
+            .original-price {
+                font-size: 16px;
+            }
+
+            .btn-buy {
+                height: 50px;
+                font-size: 16px;
+                gap: 10px;
+            }
+
+            .actions-box {
+                margin-bottom: 30px;
+            }
+
+            .details-tabs {
+                padding-top: 20px;
+            }
+
+            .tab-title {
+                font-size: 18px;
+                margin-bottom: 15px;
+            }
+
+            .long-description {
+                font-size: 14px;
+            }
+
+            .main-image-container {
+                border-radius: 16px;
+            }
+
+            .thumbnails-grid {
+                gap: 10px;
+                margin-top: 15px;
+            }
+
+            .thumb-item {
+                width: 70px;
+                height: 70px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .product-page-container {
+                width: 100%;
+                padding: 0 14px;
+                gap: 15px;
+                overflow-x: hidden;
+            }
+
+            .product-name {
+                font-size: 20px;
+            }
+
+            .short-description {
+                font-size: 14px;
+            }
+
+            .current-price {
+                font-size: 24px;
+            }
+
+            .btn-buy {
+                height: 48px;
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<header class="header">
-  <div class="container nav-container">
-    <div class="logo-area">
-      <img src="assets/images/logo.png" alt="Logo">
-      <div class="logo-text">Modo <span>Electrónico</span></div>
-    </div>
-  </div>
-</header>
+    <header class="header">
+        <div class="container nav-container">
+            <div class="logo-area" style="cursor:pointer;" onclick="window.location.href=\'/\'">
+                <img src="/assets/images/logo.png" alt="Logo">
+                <div class="logo-text">Modo <span>Electrónico</span></div>
+            </div>
+            <a href="/shop.html" class="btn btn-outline" style="padding: 8px 20px;">Voltar à Loja</a>
+        </div>
+    </header>
 
-<section class="section">
-  <div class="container product-container">
+    <main class="product-page-container">
+        
+        <!-- Lado Esquerdo: Galeria -->
+        <section class="gallery-section">
+            <div class="main-image-container" id="zoomContainer">
+                <img id="mainImage" src="" alt="Produto">
+            </div>
+            <div class="thumbnails-grid" id="thumbnailsGrid">
+                <!-- Skeletons das thumbs -->
+            </div>
+        </section>
 
-    <div class="product-gallery">
-      <img id="mainImage" src="assets/images/product1.jpg" class="main-image">
+        <!-- Lado Direito: Informações -->
+        <section class="info-section">
+            <div id="categoryTag" class="category-tag">Carregando...</div>
+            <h1 id="productName" class="product-name">---</h1>
+            
+            <p id="shortDesc" class="short-description">---</p>
 
-      <div class="thumbs">
-        <img src="assets/images/product1.jpg" class="thumb active">
-        <img src="assets/images/product2.jpg" class="thumb">
-        <img src="assets/images/product3.jpg" class="thumb">
-      </div>
-    </div>
+            <div class="price-box">
+                <span id="oldPrice" class="original-price" style="display:none;">---</span>
+                <div id="currentPrice" class="current-price">---</div>
+                <div class="stock-badge">
+                    <span class="dot"></span>
+                    <span id="stockStatus">Em Stock</span>
+                </div>
+            </div>
 
-    <div class="product-info">
-      <h2 id="productName">Nome do Produto</h2>
-      <p class="price">45.000 Kz</p>
+            <div class="actions-box">
+                <a href="#" id="whatsappBtn" class="btn-buy" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    Comprar Agora
+                </a>
+            </div>
 
-      <p class="description">
-        Descrição detalhada do produto aqui. Explicação clara sobre funcionalidades.
-      </p>
+            <div class="details-tabs">
+                <div class="tab-title">
+                    <i class="fa-solid fa-circle-info"></i>
+                    Descrição Detalhada
+                </div>
+                <div id="longDesc" class="long-description">---</div>
+            </div>
+        </section>
 
-      <h4>Especificações:</h4>
-      <ul class="specs">
-        <li>✔ Marca: Exemplo</li>
-        <li>✔ Modelo: 2025</li>
-        <li>✔ Garantia: 12 meses</li>
-      </ul>
+    </main>
 
-      <button class="btn btn-primary">Comprar via WhatsApp</button>
-    </div>
+    <footer class="footer">
+        <p>© 2026 Modo Electrónico. Todos os direitos reservados.</p>
+    </footer>
 
-  </div>
-</section>
-
-<script src="assets/js/product.js" defer></script>
+    <script src="/assets/js/product.js"></script>
 </body>
 </html>
